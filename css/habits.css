@@ -1,0 +1,169 @@
+/* Crevare — habitudes (.hab-…), poids, repas et check-in (.bdy-…). Uniquement les jetons de base.css. */
+
+/* ───────── Habitudes ───────── */
+
+.hab-ico { font-size: 1.3rem; min-width: 32px; max-width: 40%; text-align: center; flex: none; line-height: 1.1; white-space: nowrap; }
+.hab-ico-big { font-size: 1.6rem; min-width: 40px; }
+.hab-ico.is-long { font-size: 1rem; }
+
+/* Widget « Aujourd'hui » */
+.hab-rows { list-style: none; margin: 0; padding: 0; }
+.hab-row { display: flex; align-items: center; gap: 10px; min-height: 56px; padding: 6px 0; border-top: 1px solid var(--border); }
+.hab-row:first-child { border-top: 0; }
+.hab-row-t { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.hab-row-t b { font-weight: 600; overflow-wrap: anywhere; }
+.hab-row-t small { font-size: .76rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* Bouton « fait » */
+.hab-tick {
+  min-height: 48px; padding: 0 18px; border-radius: 12px; border: 2px solid var(--border); background: var(--surface-2);
+  color: var(--text); font: inherit; font-weight: 650; cursor: pointer; touch-action: manipulation;
+}
+.hab-tick.is-compact { width: 48px; height: 48px; padding: 0; border-radius: 50%; font-size: 1.2rem; color: var(--muted); flex: none; }
+.hab-tick.is-compact:not(.is-done) span { opacity: .35; }
+.hab-tick.is-done { background: var(--ok); border-color: var(--ok); color: var(--surface); }
+.hab-tick.is-compact.is-done { color: var(--surface); }
+.hab-tick:active { transform: scale(.96); }
+
+/* Habitude chiffrée */
+.hab-num { display: inline-flex; align-items: center; gap: 6px; flex: none; }
+.hab-pm {
+  width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; font-size: 1.35rem; font-weight: 600; cursor: pointer; touch-action: manipulation; display: inline-grid; place-items: center;
+}
+.hab-pm:disabled { opacity: .4; cursor: default; }
+.hab-num-v { min-width: 72px; text-align: center; font-weight: 650; font-size: .95rem; }
+.hab-num.is-compact .hab-num-v { min-width: 60px; font-size: .85rem; }
+.hab-num.is-done .hab-num-v { color: var(--ok); }
+
+/* Habitude à éviter */
+.hab-avoid {
+  display: inline-flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; flex: none;
+  min-height: 48px; padding: 4px 14px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2);
+  color: var(--ok); font: inherit; font-weight: 650; font-size: .9rem; cursor: pointer; touch-action: manipulation;
+}
+.hab-avoid small { color: var(--muted); font-weight: 500; font-size: .72rem; }
+.hab-avoid.is-slip { color: var(--warn); border-color: var(--warn); }
+.hab-avoid.is-compact { padding: 4px 10px; font-size: .84rem; }
+
+/* Carte de l'écran Habitudes */
+.hab-head { display: flex; align-items: flex-start; gap: 10px; }
+.hab-name { margin: 2px 0 0; font-size: 1.05rem; overflow-wrap: anywhere; }
+.hab-cue { margin: 4px 0 0; color: var(--info); }
+.hab-ctl { margin: 12px 0 4px; }
+.hab-ctl .hab-tick, .hab-ctl .hab-avoid { width: 100%; }
+.hab-ctl .hab-num { width: 100%; justify-content: space-between; }
+.hab-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; margin: 10px 0; }
+.hab-stats > div { display: flex; flex-direction: column; gap: 2px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--surface-2); min-width: 0; }
+.hab-stats b { font-size: 1.2rem; }
+.hab-ms { display: grid; gap: 4px; margin: 4px 0 12px; }
+.hab-ms-bar { height: 8px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.hab-ms-bar span { display: block; height: 100%; border-radius: 999px; background: var(--ok); }
+
+/* Grille des 4 semaines */
+.hab-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 2px; margin: 0 -6px; }
+.hab-dow { text-align: center; font-size: .7rem; color: var(--muted); padding-bottom: 2px; }
+.hab-cell {
+  aspect-ratio: 1; min-height: 44px; width: 100%; padding: 0; border-radius: 10px; border: 1px solid transparent;
+  background: var(--surface-2); color: var(--muted); font: inherit; font-size: .78rem; cursor: pointer;
+  display: grid; place-items: center; touch-action: manipulation;
+}
+.hab-cell.is-ok { background: var(--ok); color: var(--surface); font-weight: 650; }
+.hab-cell.is-partiel { background: var(--surface-3); color: var(--text); border-color: var(--ok); }
+.hab-cell.is-ecart { background: var(--surface-3); color: var(--warn); border-color: var(--warn); font-weight: 650; }
+.hab-cell.is-manque { background: var(--surface-2); }
+.hab-cell.is-attente { background: var(--surface); border: 1px dashed var(--border); color: var(--text); }
+.hab-cell.is-futur, .hab-cell.is-avant { background: transparent; opacity: .45; cursor: default; }
+.hab-cell.is-today { outline: 2px solid var(--info); outline-offset: -2px; }
+
+/* Archivées */
+.hab-arch summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.hab-arch-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 6px; }
+.hab-arch-list li { min-height: 48px; border-top: 1px solid var(--border); padding-top: 6px; }
+
+/* Formulaire */
+.hab-form .field input:not([type="checkbox"]):not([type="radio"]), .hab-form select { width: 100%; }
+.hab-form .seg-opt span { min-height: 44px; }
+.hab-icon-in { width: 76px !important; flex: none; text-align: center; font-size: 1.3rem; }
+.hab-icon-row { flex-wrap: wrap; align-items: flex-start; }
+.hab-emojis { display: flex; flex-wrap: wrap; gap: 4px; min-width: 0; flex: 1 1 200px; }
+.hab-emoji { flex: none; width: 44px; height: 44px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); font-size: 1.25rem; cursor: pointer; }
+.hab-form .row > .muted { flex: none; }
+
+/* ───────── Poids & repas ───────── */
+
+.bdy-weight { margin-bottom: 6px; }
+.bdy-weight .row { margin-top: 4px; }
+.bdy-w-in { width: 112px; font-size: 1.15rem; text-align: center; }
+.bdy-food-q { margin: 10px 0 6px; }
+.bdy-food { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.bdy-food-btn {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 64px;
+  border-radius: 14px; border: 2px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; font-weight: 650; cursor: pointer; touch-action: manipulation;
+}
+.bdy-food-btn span { font-size: 1.35rem; line-height: 1; }
+.bdy-food-btn[aria-pressed="true"] { border-color: var(--info); background: var(--surface-3); color: var(--info); }
+
+.bdy-range-tg { display: flex; gap: 4px; }
+.bdy-tg {
+  min-height: 44px; min-width: 52px; padding: 0 10px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text); font: inherit; font-size: .85rem; font-weight: 600; cursor: pointer;
+}
+.bdy-tg[aria-pressed="true"] { background: var(--info); border-color: var(--info); color: var(--surface); }
+.bdy-now { margin: 4px 0 8px; }
+.bdy-now b { font-size: 1.6rem; }
+.bdy-chart { display: block; width: 100%; height: auto; overflow: visible; }
+.bdy-dot { fill: var(--muted); opacity: .75; }
+.bdy-avg { fill: none; stroke: var(--info); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.bdy-legend { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 6px; align-items: center; }
+.bdy-legend .num { margin-left: auto; }
+.bdy-key-dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--muted); vertical-align: middle; }
+.bdy-key-line { display: inline-block; width: 16px; height: 3px; border-radius: 2px; background: var(--info); vertical-align: middle; }
+
+/* Bande des repas (pas de couleur « bien » ou « mal ») */
+.bdy-band { display: grid; grid-template-columns: repeat(28, minmax(0, 1fr)); gap: 2px; height: 34px; }
+.bdy-band-c { border-radius: 3px; background: var(--surface-2); }
+.bdy-band-c.is-peu, .bdy-key.is-peu { background: var(--info); }
+.bdy-band-c.is-normal, .bdy-key.is-normal { background: var(--muted); }
+.bdy-band-c.is-beaucoup, .bdy-key.is-beaucoup { background: var(--goal-custom); }
+.bdy-band-c.is-vide, .bdy-key.is-vide { background: var(--surface-2); border: 1px solid var(--border); }
+.bdy-band-axis { display: flex; justify-content: space-between; margin-top: 4px; }
+.bdy-food-legend { display: flex; flex-wrap: wrap; gap: 6px 14px; margin-top: 8px; }
+.bdy-food-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.bdy-key { display: inline-block; width: 12px; height: 12px; border-radius: 3px; }
+.pill.bdy-pill-peu { color: var(--info); }
+.bdy-h-food { min-width: 92px; justify-content: center; }
+.bdy-h-food.is-none { opacity: .5; }
+.pill.bdy-pill-beaucoup { color: var(--goal-custom); }
+
+.bdy-hist { list-style: none; margin: 0; padding: 0; }
+.bdy-h-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 48px;
+  padding: 6px 2px; border: 0; border-top: 1px solid var(--border); background: none; color: var(--text); font: inherit; text-align: left; cursor: pointer;
+}
+.sheet form .field input:not([type="radio"]) { width: 100%; }
+.sheet .seg-opt span { min-height: 44px; }
+
+/* ───────── Check-in ───────── */
+
+.bdy-ci-q { display: grid; gap: 6px; margin: 10px 0; }
+.bdy-scale { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px; }
+.bdy-sc {
+  min-height: 44px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; font-weight: 650; cursor: pointer; touch-action: manipulation;
+}
+.bdy-sc[aria-pressed="true"] { background: var(--info); border-color: var(--info); color: var(--surface); }
+.bdy-range { align-items: center; }
+.bdy-range input[type="range"] { flex: 1; min-height: 44px; }
+.bdy-range-v { min-width: 28px; text-align: right; font-weight: 650; }
+.bdy-ci .field { margin: 10px 0; }
+.bdy-ci .field input { width: 100%; }
+
+.bdy-ready { display: flex; gap: 12px; align-items: flex-start; padding: 12px; border-radius: var(--radius-sm); background: var(--surface-2); margin: 10px 0; border-left: 4px solid var(--c, var(--border)); }
+.bdy-ready p { margin: 2px 0 0; }
+.bdy-light { width: 18px; height: 18px; border-radius: 50%; flex: none; margin-top: 2px; background: var(--c, var(--muted)); box-shadow: 0 0 0 4px var(--surface-3); }
+.bdy-ready.is-vert { --c: var(--ok); }
+.bdy-ready.is-orange { --c: var(--warn); }
+.bdy-ready.is-rouge { --c: var(--danger); }
+.bdy-ci .link { min-height: 44px; display: inline-flex; align-items: center; }

@@ -39,6 +39,7 @@
         maxWeekdayMin: 120, // maximum de révision par jour de semaine
         maxWeekendMin: 240,
         meal: { start: '19:30', end: '20:15' }, // créneau repas protégé (vide = aucun)
+        lunch: { start: '12:00', end: '13:00' }, // pause déjeuner protégée
         daysOff: [], // jours sans révision (0 = lundi)
         avoidTrainingDays: false, // pas de révision les jours de séance de sport
         spacing: [0, 1, 7, 30], // relectures espacées (jours après le cours)
@@ -85,6 +86,7 @@
       checkins: {},
       benchmarks: {},
       health: { lastImportAt: null, workouts: [] },
+      checklists: {}, // 'AAAA-MM-JJ|listeId' → { itemId: 1 } (cases cochées des check-lists)
       agenda: defaultAgenda(),
       settings: { sound: true, voice: true, theme: 'auto', lastExportAt: null, exportReminderDays: 14 },
     };
@@ -275,6 +277,7 @@
     }
     const h = obj(s.health);
     out.health = { lastImportAt: typeof h.lastImportAt === 'string' ? h.lastImportAt : null, workouts: arr(h.workouts).filter((w) => U.isObj(w) && U.isKey(w.date)) };
+    for (const [k, v] of Object.entries(obj(s.checklists))) if (U.isObj(v)) out.checklists[str(k, 120)] = v;
     const ag = obj(s.agenda);
     const dag = out.agenda;
     dag.sources = arr(ag.sources).filter((x) => U.isObj(x) && x.id).map((x) => ({

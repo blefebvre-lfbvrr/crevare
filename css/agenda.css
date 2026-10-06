@@ -1,0 +1,186 @@
+/* Crevare — Agenda et révisions (.agd-…). Uniquement les jetons de base.css. */
+
+.agd-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.agd-h { font-size: .8rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 10px 0 6px; }
+h2.agd-h { margin: 0; }
+
+/* ───────── En-tête, navigation ───────── */
+.agd-top { gap: 10px; }
+.agd-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.agd-head .icon-btn { width: 44px; height: 44px; }
+.agd-nav { display: grid; grid-template-columns: 44px 1fr 44px; align-items: center; gap: 8px; }
+.agd-nav .icon-btn { width: 44px; height: 44px; font-size: 1.4rem; }
+.agd-nav-d { display: flex; flex-direction: column; align-items: center; text-align: center; min-width: 0; }
+.agd-nav-d b { font-size: 1.05rem; }
+.agd-nav-d small { font-size: .8rem; }
+.agd-modes { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.agd-seg { display: inline-flex; padding: 3px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border); }
+.agd-seg a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; font-weight: 600; font-size: .9rem; color: var(--muted); }
+.agd-seg a[aria-current] { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgb(0 0 0 / .2); }
+
+/* ───────── Résumé de la semaine ───────── */
+.agd-sum { margin: 4px 0 12px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); }
+.agd-sum p { margin: 0 0 8px; font-size: .92rem; }
+.agd-bar { height: 6px; border-radius: 999px; background: var(--surface-3); overflow: hidden; }
+.agd-bar span { display: block; height: 100%; border-radius: inherit; background: var(--ok); }
+
+/* ───────── Journée entière, notes ───────── */
+.agd-chips { list-style: none; margin: 0 0 10px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.agd-chip {
+  display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border-radius: 999px; max-width: 100%;
+  border: 1px solid var(--border); border-left: 4px solid var(--c, var(--muted)); background: var(--surface); color: var(--text);
+  font: inherit; font-size: .86rem; text-align: left; cursor: pointer; overflow-wrap: anywhere;
+}
+.agd-chip.is-free { border-style: dashed; border-left-style: solid; color: var(--muted); }
+.agd-note { margin: 8px 0; }
+
+/* ───────── Frise horaire ───────── */
+.agd-tl {
+  position: relative; margin: 8px 0 14px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border);
+  overflow: hidden;
+}
+.agd-hr { position: absolute; left: 0; right: 0; height: 0; border-top: 1px solid var(--border); }
+.agd-hr span { position: absolute; left: 6px; top: 2px; font-size: .7rem; color: var(--muted); }
+.agd-tl-area { position: absolute; top: 0; bottom: 0; left: 48px; right: 6px; }
+.agd-band {
+  position: absolute; left: 0; right: 0; border-radius: 6px; background: var(--surface-2);
+  background: repeating-linear-gradient(135deg, var(--surface-2) 0 6px, transparent 6px 12px);
+  display: flex; align-items: center; justify-content: flex-end; padding: 0 6px; pointer-events: none;
+}
+.agd-band span { font-size: .68rem; color: var(--muted); }
+.agd-limit { position: absolute; left: 0; right: 0; border-top: 2px dashed var(--danger); pointer-events: none; }
+.agd-limit span { position: absolute; right: 4px; top: 2px; font-size: .68rem; color: var(--danger); font-weight: 650; }
+.agd-it {
+  position: absolute; display: flex; flex-direction: column; justify-content: flex-start; gap: 1px; padding: 4px 8px; margin: 1px 2px 0;
+  border-radius: 8px; border: 1px solid var(--border); border-left: 4px solid var(--c, var(--muted));
+  background: var(--surface-2); background: color-mix(in srgb, var(--c, var(--muted)) 16%, var(--surface));
+  color: var(--text); font: inherit; font-size: .8rem; line-height: 1.2; text-align: left; overflow: hidden; cursor: pointer;
+  box-sizing: border-box; touch-action: manipulation;
+}
+.agd-it-t { font-size: .7rem; color: var(--muted); white-space: nowrap; }
+.agd-it-n { font-weight: 650; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+.agd-it-s { font-size: .72rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.agd-it.is-short { flex-direction: row; align-items: center; gap: 6px; padding-top: 0; padding-bottom: 0; }
+.agd-it.is-short .agd-it-n { -webkit-line-clamp: 1; white-space: nowrap; display: block; }
+.agd-it.is-short .agd-it-s { display: none; }
+.agd-it.is-free { border-style: dashed; border-left-style: solid; background: transparent; color: var(--muted); }
+.agd-it.is-done { opacity: .62; }
+.agd-it.is-done .agd-it-n { text-decoration: line-through; }
+.agd-sport { border-style: dashed; border-left-style: solid; }
+.agd-block { border-color: var(--c, var(--border)); }
+.agd-now { position: absolute; left: -6px; right: 0; height: 0; border-top: 2px solid var(--accent); z-index: 2; pointer-events: none; }
+.agd-now::before { content: ''; position: absolute; left: -4px; top: -6px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); }
+
+/* ───────── Révisions à cocher ───────── */
+.agd-revs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.agd-rev {
+  display: flex; align-items: center; gap: 8px; min-height: 52px; padding: 4px 6px 4px 4px; border-radius: var(--radius-sm);
+  background: var(--surface-2); border-left: 4px solid var(--c, var(--muted));
+}
+.agd-check {
+  flex: none; width: 44px; height: 44px; border-radius: 12px; border: 2px solid var(--c, var(--border)); background: var(--surface);
+  color: var(--accent-text); font-size: 1.2rem; font-weight: 800; cursor: pointer; display: grid; place-items: center; touch-action: manipulation;
+}
+.agd-check[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); }
+.agd-check.is-off { border-style: dashed; opacity: .5; cursor: default; }
+.agd-rev-main {
+  flex: 1; min-width: 0; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 4px; border: 0; background: none;
+  color: var(--text); font: inherit; text-align: left; cursor: pointer;
+}
+.agd-rev-t { flex: none; font-size: .86rem; font-weight: 650; }
+.agd-rev-n { display: flex; flex-direction: column; min-width: 0; }
+.agd-rev-n b { overflow-wrap: anywhere; }
+.agd-rev-n small { font-size: .8rem; overflow-wrap: anywhere; }
+.agd-rev.is-done .agd-rev-n b { text-decoration: line-through; color: var(--muted); }
+.agd-rev.is-missed { background: var(--surface-2); background: color-mix(in srgb, var(--warn) 12%, var(--surface-2)); }
+.agd-yn { display: flex; gap: 6px; flex: none; }
+.agd-yn .btn.small { min-height: 44px; }
+.agd-missed { border-color: var(--warn); }
+.agd-sport-line { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin: 10px 0 0; font-size: .9rem; }
+.agd-sport-line .link { padding: 10px 0; }
+
+/* ───────── Semaine ───────── */
+.agd-week { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.agd-wday { margin: 0; padding: 10px 12px; }
+.agd-wday.is-today { border-color: var(--accent-2); }
+.agd-wday-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 44px; }
+.agd-wday-h > span:first-child { display: flex; flex-direction: column; }
+.agd-wday-h small { font-size: .8rem; }
+.agd-wls { list-style: none; margin: 4px 0 8px; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 4px; }
+.agd-wl { display: flex; align-items: baseline; gap: 8px; font-size: .88rem; padding-left: 10px; border-left: 3px solid var(--c, var(--muted)); }
+.agd-wl.is-free { border-left-style: dashed; color: var(--muted); }
+.agd-wl-t { flex: none; min-width: 84px; font-size: .8rem; color: var(--muted); }
+.agd-wl-n { min-width: 0; overflow-wrap: anywhere; }
+
+/* ───────── Feuilles ───────── */
+.agd-sheet-time { font-weight: 650; }
+.agd-tasks { margin: 8px 0; padding-left: 20px; }
+.agd-tasks li { margin: 4px 0; }
+.agd-sheet-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 12px 0 6px; }
+.agd-sheet-actions + .link { display: block; min-height: 44px; }
+.agd-dl { margin: 0 0 10px; display: grid; gap: 8px; }
+.agd-dl div { display: grid; grid-template-columns: 96px 1fr; gap: 8px; }
+.agd-dl dt { color: var(--muted); font-size: .86rem; }
+.agd-dl dd { margin: 0; overflow-wrap: anywhere; }
+.agd-dest { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 10px; }
+
+/* ───────── Réglages ───────── */
+.agd-result ul { margin: 0 0 4px; padding-left: 18px; }
+.agd-srcs { gap: 0; }
+.agd-src { border-left: 5px solid var(--c, var(--border)); }
+.agd-src-h { display: flex; align-items: center; gap: 8px; }
+.agd-src-h input { width: 100%; font-weight: 650; }
+.agd-src-i { font-size: 1.3rem; flex: none; }
+.agd-src .field { margin: 10px 0; }
+.agd-src input[type="url"] { width: 100%; }
+.agd-file { position: relative; overflow: hidden; }
+.agd-file input[type="file"] { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; min-height: 0; }
+.agd-more { margin-top: 10px; }
+.agd-more > summary { display: flex; align-items: center; min-height: 44px; cursor: pointer; color: var(--info); font-weight: 600; }
+.agd-more > summary b { color: var(--text); }
+.agd-more textarea, .agd-more input[type="text"] { width: 100%; }
+.agd-form .field input, .agd-form .field select { width: 100%; }
+.agd-guide-card > summary, .card > summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+.agd-guide { font-size: .92rem; }
+.agd-steps { padding-left: 20px; margin: 6px 0; }
+.agd-steps li { margin: 6px 0; }
+.agd-ios { font-weight: 700; }
+.agd-pre {
+  margin: 8px 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border);
+  font-size: .8rem; white-space: pre-wrap; overflow-wrap: anywhere; user-select: all; -webkit-user-select: all;
+}
+.agd-subjs { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.agd-subj { min-width: 0; padding: 10px; border-radius: var(--radius-sm); background: var(--surface-2); border-left: 4px solid var(--c, var(--muted)); }
+.agd-subj.is-ignored { opacity: .7; }
+.agd-subj-h { display: flex; align-items: center; gap: 8px; }
+.agd-subj-h input { min-width: 0; font-weight: 650; }
+.agd-dot { width: 14px; height: 14px; border-radius: 50%; background: var(--c, var(--muted)); flex: none; }
+.agd-subj-o { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 8px; }
+.agd-inline { display: flex; align-items: center; gap: 6px; font-size: .86rem; color: var(--muted); }
+.agd-exams { list-style: none; margin: 8px 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.agd-exams li { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--surface-2); }
+.agd-exams li span { display: flex; flex-direction: column; }
+.agd-exams .icon-btn { width: 44px; height: 44px; }
+.agd-rules .field.inline > span { font-size: .9rem; color: var(--text); }
+.agd-num { width: 84px; text-align: center; }
+.agd-rules input[type="time"] { min-width: 112px; }
+.agd-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.agd-day {
+  min-height: 44px; border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; font-size: .82rem; font-weight: 650; cursor: pointer; padding: 0;
+}
+.agd-day.is-on { background: var(--danger); border-color: var(--danger); color: #fff; }
+
+/* ───────── Accueil, carte « Aujourd'hui » ───────── */
+.agd-welcome h2 { margin-top: 0; }
+.agd-ways { padding-left: 20px; }
+.agd-ways li { margin: 8px 0; }
+.agd-card .agd-revs { margin-top: 4px; }
+.agd-open { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+.agd-invite .btn { margin-top: 4px; }
+
+@media (max-width: 360px) {
+  .agd-tl-area { left: 40px; }
+  .agd-wl-t { min-width: 72px; }
+  .agd-rev-t { font-size: .8rem; }
+}

@@ -1,0 +1,122 @@
+/* Crevare — bibliothèque, fiches exercice, séances perso, sélecteur (.lib-…). Uniquement les jetons de base.css. */
+
+.lib-back {
+  background: none; border: 0; font: inherit; font-size: .9rem; color: var(--muted); cursor: pointer;
+  min-height: 44px; padding: 0; text-align: left; justify-self: start;
+}
+.lib-links .btn { min-height: 44px; }
+.lib-left { justify-content: flex-start; text-align: left; }
+
+/* Filtres */
+.lib-filters { display: grid; grid-template-columns: minmax(0, 1fr); gap: 10px; }
+.lib-search { width: 100%; }
+.lib-goal .seg { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 2px; }
+.lib-goal .seg::-webkit-scrollbar { display: none; }
+.lib-goal .seg-opt { flex: none; }
+.lib-goal .seg-opt span { min-height: 44px; }
+.lib-selects { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+.lib-sel { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.lib-sel select { width: 100%; }
+.lib-filters .link { justify-self: start; min-height: 44px; }
+
+/* Liste */
+.lib-group-t { margin: 18px 0 8px; font-size: .95rem; }
+.lib-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.lib-row, .lib-pick-btn {
+  display: flex; align-items: center; gap: 10px; width: 100%; min-height: 56px; padding: 8px 12px;
+  border-radius: 12px; background: var(--surface); border: 1px solid var(--border); color: var(--text);
+  font: inherit; text-align: left; cursor: pointer;
+}
+.lib-ico { font-size: 1.2rem; width: 28px; text-align: center; flex: none; }
+.lib-txt { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+.lib-txt b { font-weight: 650; overflow-wrap: anywhere; }
+.lib-txt small { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lib-badges { display: flex; flex-wrap: wrap; gap: 4px; justify-content: flex-end; max-width: 42%; }
+.lib-badges:empty { display: none; }
+.lib-chev { color: var(--muted); flex: none; }
+.lib-circuits summary { min-height: 44px; display: flex; align-items: center; gap: 6px; cursor: pointer; }
+.lib-circuit { padding: 8px 0; border-top: 1px solid var(--border); }
+.lib-circuit .btn.small { min-height: 44px; }
+
+/* Fiche exercice */
+.lib-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(96px, 1fr)); gap: 8px; }
+.lib-stat { display: flex; flex-direction: column; gap: 2px; background: var(--surface-2); border-radius: var(--radius-sm); padding: 8px 10px; min-width: 0; }
+.lib-stat b { font-size: 1.02rem; overflow-wrap: anywhere; }
+.lib-spark { margin-top: 10px; --c: var(--info); }
+.lib-hist { list-style: none; padding: 0; margin: 10px 0 0; }
+.lib-hist a { min-height: 44px; border-top: 1px solid var(--border); padding: 6px 0; }
+.lib-hist a span:last-child { text-align: right; }
+.lib-links-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0 16px; }
+.lib-links-list a { display: inline-flex; min-height: 44px; align-items: center; }
+.lib-info { display: grid; gap: 8px; margin: 0; }
+.lib-info div { display: grid; grid-template-columns: 92px 1fr; gap: 8px; }
+.lib-info dt { color: var(--muted); font-size: .86rem; }
+.lib-info dd { margin: 0; overflow-wrap: anywhere; }
+.lib-actions { margin: 12px 0; }
+.card-head .link { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Formulaires */
+.lib-form .field input:not([type="checkbox"]):not([type="radio"]), .lib-form select, .lib-form .time-in { width: 100%; }
+.lib-form .seg-opt span { min-height: 44px; }
+.lib-two { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.lib-three { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: 8px; }
+.lib-three .field { margin: 6px 0; min-width: 0; }
+.lib-three input, .lib-three .time-in { width: 100%; }
+.lib-checks { display: flex; flex-wrap: wrap; gap: 6px; }
+.lib-check { position: relative; }
+.lib-check input { position: absolute; inset: 0; opacity: 0; width: 100%; height: 100%; margin: 0; cursor: pointer; }
+.lib-check span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px;
+  border: 1px solid var(--border); background: var(--surface-2); font-size: .9rem; font-weight: 600;
+}
+.lib-check input:checked + span {
+  background: var(--accent); background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-text); border-color: transparent;
+}
+.lib-check input:checked + span::before { content: "✓\00a0"; }
+.lib-check input:focus-visible + span { outline: 3px solid var(--info); outline-offset: 2px; }
+
+/* Séances perso */
+.lib-cs { display: flex; align-items: center; gap: 10px; margin: 0; }
+.lib-cs-main { display: flex; flex-direction: column; gap: 3px; flex: 1; min-width: 0; min-height: 44px; }
+.lib-cs .btn.small { min-height: 44px; }
+.lib-cs-list { list-style: none; padding: 0; margin: 0; }
+.lib-cs-row { margin: 8px 0; }
+.lib-cs-row b a { text-decoration: underline; text-decoration-color: var(--border); text-underline-offset: 3px; }
+.lib-cs-tools { flex: none; }
+.lib-cs-tools .icon-btn { width: 44px; height: 44px; }
+.lib-cs-tools .icon-btn:disabled { opacity: .35; cursor: default; }
+.lib-cs-note { margin: 4px 0 0; }
+.lib-cs-note input { width: 100%; }
+.lib-cs-actions { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.lib-plan { display: flex; align-items: flex-end; gap: 8px; }
+.lib-plan .field { margin: 0; }
+.lib-plan input { width: 100%; }
+
+/* Sélecteur d'exercices */
+.lib-pick { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.lib-chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+.lib-chips::-webkit-scrollbar { display: none; }
+.lib-chip {
+  flex: none; min-height: 44px; padding: 0 12px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text); font: inherit; font-size: .86rem; font-weight: 600; cursor: pointer; white-space: nowrap;
+}
+.lib-chip[aria-pressed="true"] {
+  background: var(--accent); background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-text); border-color: transparent;
+}
+.lib-pick-opts select { flex: 1; min-width: 0; }
+.lib-pick-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.lib-pick-btn { background: var(--surface-2); }
+.lib-pick-btn.is-added { border-color: var(--ok); }
+.lib-plus {
+  width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; flex: none;
+  background: var(--surface-3); font-weight: 800;
+}
+.lib-pick-btn.is-added .lib-plus { background: var(--ok); color: var(--accent-text); }
+
+@media (max-width: 380px) {
+  .lib-three { grid-template-columns: 1fr 1fr; }
+  .lib-three .field:nth-child(2) { grid-column: 1 / -1; order: -1; }
+  .lib-info div { grid-template-columns: 1fr; gap: 0; }
+}

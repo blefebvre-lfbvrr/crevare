@@ -1,0 +1,157 @@
+/* Crevare — plan sportif (.pln-…) : semaine, aperçu d'un jour, vue d'ensemble, feuilles « imprévu / changer / déplacer ».
+ * Uniquement les jetons de base.css. */
+
+/* ───────── Navigation de semaine ───────── */
+.pln-nav { display: flex; align-items: center; gap: 8px; margin: 4px 0 12px; }
+.pln-nav .icon-btn { width: 46px; height: 46px; font-size: 1.4rem; }
+.pln-nav .btn[aria-current] { border-color: var(--accent-2); }
+
+/* ───────── Bandeau de période ───────── */
+.pln-phase { border-left: 5px solid var(--k, var(--muted)); }
+.pln-phase-l { font-size: 1.05rem; }
+.pln-notes { margin: 6px 0; padding-left: 18px; font-size: .86rem; color: var(--text); display: grid; gap: 4px; }
+.pln-phase .link, .pln-more { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+
+/* ───────── Résumé ───────── */
+.pln-sum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0; }
+.pln-sum > div {
+  display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; min-width: 0;
+  border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border);
+}
+.pln-sum b { font-size: 1.35rem; line-height: 1.1; }
+.pln-sum b small { font-size: .9rem; color: var(--muted); font-weight: 600; }
+.pln-sum span { font-size: .74rem; color: var(--muted); }
+
+/* ───────── Jours de la semaine ───────── */
+.pln-days { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.pln-day {
+  display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 10px 12px 10px 10px;
+  border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border);
+  border-left: 5px solid var(--c, var(--muted));
+}
+.pln-day.is-rest { border-left-color: var(--border); background: transparent; border-style: dashed; border-left-style: solid; }
+.pln-day.is-today { outline: 2px solid var(--accent-2); outline-offset: -1px; }
+.pln-day.st-fait { background: color-mix(in srgb, var(--ok) 10%, var(--surface)); }
+.pln-day-d { display: flex; flex-direction: column; align-items: center; width: 40px; flex: none; line-height: 1.1; }
+.pln-day-d small { font-size: .72rem; color: var(--muted); font-weight: 650; text-transform: uppercase; }
+.pln-day-d b { font-size: 1.25rem; }
+.pln-day-m { display: flex; flex-direction: column; flex: 1; min-width: 0; gap: 1px; }
+.pln-day-m b { font-weight: 650; overflow-wrap: anywhere; }
+.pln-day-m small { font-size: .8rem; }
+.pln-day.is-rest .pln-day-m b { color: var(--muted); font-weight: 600; }
+.pln-bonus { color: var(--info); }
+.pln-day-s { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; flex: none; }
+.pln-mod { --c: var(--info); }
+
+/* ───────── Liens bas de page ───────── */
+.pln-links { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 16px 0 4px; }
+.pln-link {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; min-height: 72px; padding: 8px;
+  border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border);
+  font-size: .82rem; font-weight: 650; text-align: center;
+}
+.pln-link span { font-size: 1.3rem; }
+
+/* ───────── Aperçu d'un jour ───────── */
+.pln-sess { border-left: 5px solid var(--c, var(--accent)); }
+.pln-sess h2 { font-size: 1.3rem; margin: 6px 0 2px; overflow-wrap: anywhere; }
+.pln-sess .btn.block { margin-top: 10px; min-height: 52px; }
+.pln-var { display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px; margin: 12px 0 4px; padding: 4px; border-radius: 14px; background: var(--surface-2); }
+.pln-var-b {
+  min-height: 44px; padding: 0 4px; border: 0; border-radius: 10px; background: transparent; color: var(--muted);
+  font: inherit; font-size: .86rem; font-weight: 650; cursor: pointer; touch-action: manipulation;
+}
+.pln-var-b[aria-pressed="true"] { background: var(--surface); color: var(--text); box-shadow: 0 1px 3px rgb(0 0 0 / .2); }
+.pln-bonus-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; margin: 6px 0; border-radius: var(--radius-sm); background: var(--surface-2); }
+.pln-bonus-row b { display: block; font-size: .92rem; }
+.pln-bonus-row small { display: block; font-size: .78rem; }
+.pln-bonus-row .btn { flex: none; min-height: 44px; }
+
+.pln-ex { list-style: none; margin: 8px 0; padding: 0; display: grid; gap: 6px; }
+.pln-ex-row {
+  display: flex; align-items: flex-start; gap: 10px; min-height: 48px; padding: 8px 10px;
+  border-radius: var(--radius-sm); background: var(--surface-2);
+}
+.pln-ex-row b { display: block; font-weight: 600; overflow-wrap: anywhere; }
+.pln-ex-row small { display: block; font-size: .8rem; }
+.pln-ex-row .pill { margin-top: 4px; }
+.pln-ex-n {
+  width: 26px; height: 26px; border-radius: 50%; flex: none; display: grid; place-items: center;
+  background: var(--surface-3); font-size: .78rem; font-weight: 700;
+}
+.pln-ex-note { color: var(--text); opacity: .85; margin-top: 2px; }
+
+.pln-acts { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 8px; }
+.pln-acts:empty { display: none; }
+
+/* Agenda du jour */
+.pln-slot { display: flex; align-items: center; gap: 8px; margin: 6px 0 10px; padding: 8px 12px; border-radius: var(--radius-sm); background: var(--surface-2); font-size: .9rem; }
+.pln-evs { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.pln-ev { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 6px 10px; border-radius: var(--radius-sm); background: var(--surface-2); border-left: 4px solid var(--c, var(--muted)); }
+.pln-ev b { display: block; font-weight: 600; font-size: .92rem; overflow-wrap: anywhere; }
+.pln-ev small { display: block; font-size: .76rem; }
+.pln-ev-t { width: 92px; flex: none; font-size: .82rem; font-weight: 650; }
+.pln-ev-rev.is-done { opacity: .6; }
+
+/* ───────── Check-list ───────── */
+.pln-cl-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.pln-cl-item {
+  display: flex; align-items: flex-start; gap: 10px; width: 100%; min-height: 48px; padding: 10px;
+  border: 0; border-radius: var(--radius-sm); background: var(--surface-2); color: var(--text);
+  font: inherit; font-size: .9rem; text-align: left; cursor: pointer; touch-action: manipulation;
+}
+.pln-cl-box {
+  width: 24px; height: 24px; flex: none; border-radius: 7px; border: 2px solid var(--border); display: grid; place-items: center;
+  font-size: .85rem; font-weight: 800; color: var(--accent-text);
+}
+.pln-cl-item[aria-checked="true"] { color: var(--muted); }
+.pln-cl-item[aria-checked="true"] .pln-cl-box { background: var(--ok); border-color: var(--ok); }
+.pln-cl-item[aria-checked="true"] span:last-child { text-decoration: line-through; text-decoration-color: var(--border); }
+
+/* ───────── Feuilles (modales) ───────── */
+.pln-opt {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 56px; margin: 6px 0; padding: 10px 12px;
+  border-radius: var(--radius-sm); border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; text-align: left; cursor: pointer; touch-action: manipulation;
+}
+.pln-opt b { display: block; font-weight: 650; }
+.pln-opt small { display: block; font-size: .8rem; }
+.pln-opt-i { font-size: 1.3rem; width: 30px; text-align: center; flex: none; }
+.pln-opt:disabled { opacity: .5; cursor: not-allowed; }
+.pln-opt:active:not(:disabled) { transform: scale(.99); }
+.pln-opt .pill { flex: none; }
+
+/* ───────── Vue d'ensemble (frise) ───────── */
+.pln-tl { list-style: none; margin: 8px 0 0; padding: 0 0 0 18px; position: relative; display: grid; gap: 12px; }
+.pln-tl::before { content: ""; position: absolute; left: 6px; top: 8px; bottom: 8px; width: 3px; border-radius: 3px; background: var(--border); }
+.pln-blk {
+  position: relative; padding: 12px 14px; border-radius: var(--radius); background: var(--surface);
+  border: 1px solid var(--border); border-left: 5px solid var(--k, var(--muted));
+}
+.pln-blk::before {
+  content: ""; position: absolute; left: -19px; top: 16px; width: 13px; height: 13px; border-radius: 50%;
+  background: var(--k, var(--muted)); border: 3px solid var(--bg);
+}
+.pln-blk.is-current { box-shadow: 0 0 0 2px var(--accent-2); }
+.pln-year { margin: 4px 0 -4px -18px; padding-left: 0; font-size: .8rem; font-weight: 800; letter-spacing: .08em; color: var(--muted); background: var(--bg); position: relative; }
+.pln-blk-j { padding: 8px 14px; background: color-mix(in srgb, var(--k) 10%, var(--surface)); }
+.pln-blk-j .pln-blk-h { margin: 0; }
+.pln-blk.is-past { opacity: .65; }
+.pln-blk p { margin: 4px 0; }
+.pln-blk-h { display: flex; flex-direction: column; gap: 2px; margin-bottom: 4px; }
+.pln-blk-h b { font-size: 1rem; }
+.pln-here { margin: 6px 0 8px; font-size: .86rem; font-weight: 650; color: var(--accent-2); }
+.pln-bar { height: 8px; margin-top: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.pln-bar i { display: block; height: 100%; border-radius: 999px; background: var(--accent-2); }
+.pln-marks { list-style: none; margin: 8px 0 0; padding: 8px 0 0; border-top: 1px solid var(--border); display: grid; gap: 4px; }
+.pln-mark { display: flex; align-items: baseline; gap: 8px; font-size: .86rem; }
+.pln-mark-d { width: 58px; flex: none; color: var(--muted); font-size: .78rem; font-weight: 650; }
+.pln-mark.is-goal { font-weight: 700; color: var(--g, var(--text)); }
+.pln-mark.is-done { color: var(--muted); text-decoration: line-through; }
+.pln-mark.is-late .pln-mark-d { color: var(--danger); }
+
+@media (max-width: 360px) {
+  .pln-sum b { font-size: 1.15rem; }
+  .pln-var-b { font-size: .78rem; }
+  .pln-ev-t { width: 78px; }
+}

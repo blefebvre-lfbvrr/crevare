@@ -1,0 +1,107 @@
+/* Crevare — écran « Aujourd'hui » (.tdy-…). Uniquement les jetons de base.css. */
+
+/* ───────── En-tête ───────── */
+.tdy-top { gap: 2px; }
+.tdy-date { margin: 0; font-size: .8rem; font-weight: 650; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.tdy-top h1 { font-size: 1.6rem; overflow-wrap: anywhere; }
+.tdy-phase {
+  display: inline-flex; align-items: center; flex-wrap: wrap; gap: 6px; justify-self: start; margin-top: 4px;
+  min-height: 44px; padding: 4px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border);
+  font-size: .86rem; font-weight: 600;
+}
+.tdy-phase-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--k, var(--muted)); flex: none; }
+
+/* ───────── Check-in replié / déplié ───────── */
+.tdy-ci-row {
+  display: flex; align-items: center; gap: 12px; width: 100%; min-height: 60px; margin: 12px 0; padding: 10px 14px;
+  border-radius: var(--radius); border: 1px dashed var(--border); background: var(--surface); color: var(--text);
+  font: inherit; text-align: left; cursor: pointer; touch-action: manipulation;
+}
+.tdy-ci-row b { display: block; font-weight: 650; }
+.tdy-ci-row small { display: block; font-size: .8rem; }
+.tdy-ci-i { font-size: 1.4rem; flex: none; }
+.tdy-ci { margin: 12px 0; }
+.tdy-ci > .card { margin-bottom: 0; }
+.tdy-ci-fold { display: block; min-height: 44px; margin: 0 auto; }
+
+/* ───────── Carte « Séance du jour » ───────── */
+.tdy-sess { position: relative; overflow: hidden; border-left: 5px solid var(--c, var(--accent)); }
+.tdy-sess h2 { font-size: 1.3rem; margin: 2px 0 6px; overflow-wrap: anywhere; }
+.tdy-sess-h { display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 24px; }
+.tdy-kicker { font-size: .74rem; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--c, var(--muted)); }
+.tdy-mod { --c: var(--info); }
+.tdy-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; margin: 4px 0 8px; font-size: .9rem; }
+.tdy-meta .num { font-weight: 650; }
+.tdy-intro {
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+  margin: 8px 0; color: var(--text);
+}
+.tdy-slot {
+  display: flex; align-items: center; gap: 8px; margin: 10px 0; padding: 8px 12px; border-radius: var(--radius-sm);
+  background: var(--surface-2); font-size: .9rem;
+}
+.tdy-actions { display: flex; gap: 8px; margin-top: 12px; }
+.tdy-actions .btn.block { flex: 1; min-height: 52px; font-size: 1.05rem; }
+.tdy-actions .btn.ghost:not(.block) { flex: none; }
+.tdy-imprevu { display: block; min-height: 44px; margin: 6px auto 0; color: var(--muted); }
+.tdy-done { margin: 8px 0 0; font-weight: 650; color: var(--ok); }
+.tdy-catch .btn { display: flex; }
+
+/* Feu de forme */
+.tdy-ready {
+  display: flex; align-items: center; gap: 10px; margin: 10px 0; padding: 10px 12px; border-radius: var(--radius-sm);
+  background: var(--surface-2); font-size: .9rem;
+}
+.tdy-ready small { display: block; font-size: .78rem; margin-top: 2px; }
+.tdy-ready .link { display: flex; align-items: center; min-height: 44px; padding: 0; }
+.tdy-more { display: inline-flex; align-items: center; min-height: 44px; padding: 0; }
+.tdy-ready .btn { flex: none; }
+.tdy-dot { width: 14px; height: 14px; border-radius: 50%; flex: none; background: var(--muted); }
+.tdy-ready.lvl-vert .tdy-dot { background: var(--ok); }
+.tdy-ready.lvl-orange .tdy-dot { background: var(--warn); }
+.tdy-ready.lvl-rouge .tdy-dot { background: var(--danger); }
+
+/* Bonus facultatifs */
+.tdy-bonus { margin-top: 12px; border-top: 1px solid var(--border); }
+.tdy-bonus-t {
+  display: flex; align-items: center; justify-content: space-between; width: 100%; min-height: 48px; padding: 0;
+  border: 0; background: none; color: var(--text); font: inherit; font-weight: 650; cursor: pointer; touch-action: manipulation;
+}
+.tdy-bonus-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.tdy-bonus-row { display: flex; align-items: center; gap: 10px; padding: 8px 10px; border-radius: var(--radius-sm); background: var(--surface-2); }
+.tdy-bonus-row b { display: block; font-weight: 600; font-size: .92rem; }
+.tdy-bonus-row small { display: block; font-size: .78rem; }
+.tdy-bonus-row .btn { flex: none; min-height: 44px; }
+
+/* ───────── Semaine ───────── */
+.tdy-strip { list-style: none; margin: 6px 0 10px; padding: 0; display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.tdy-sd {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-height: 56px;
+  border-radius: 12px; background: var(--surface-2); border: 2px solid transparent; position: relative;
+}
+.tdy-sd::after { content: ""; position: absolute; left: 25%; right: 25%; bottom: 4px; height: 3px; border-radius: 3px; background: var(--c, var(--muted)); opacity: .8; }
+.tdy-sd small { font-size: .7rem; font-weight: 650; color: var(--muted); }
+.tdy-sd span { font-size: 1.05rem; line-height: 1.1; }
+.tdy-sd.is-today { border-color: var(--accent-2); }
+.tdy-sd.st-fait { background: color-mix(in srgb, var(--ok) 18%, var(--surface-2)); }
+.tdy-sd.st-fait span { color: var(--ok); font-weight: 800; }
+.tdy-sd.st-manque span { color: var(--danger); font-weight: 800; }
+.tdy-sd.st-en-cours span, .tdy-sd.st-a-terminer span { color: var(--warn); }
+.tdy-sd.st-repos { background: transparent; border-style: dashed; border-color: var(--border); }
+.tdy-sd.st-repos.is-today { border-color: var(--accent-2); }
+.tdy-sd.st-repos::after { display: none; }
+
+.tdy-prog {
+  display: flex; align-items: center; gap: 14px; flex-wrap: wrap; min-height: 52px; padding: 8px 12px;
+  border-radius: var(--radius-sm); background: var(--surface-2);
+}
+.tdy-prog > span:not(.tdy-prog-go) { display: flex; flex-direction: column; line-height: 1.15; }
+.tdy-prog b { font-size: 1.1rem; }
+.tdy-prog small { font-size: .72rem; color: var(--muted); }
+.tdy-prog-go { margin-left: auto; color: var(--info); font-weight: 650; font-size: .9rem; }
+
+@media (max-width: 360px) {
+  .tdy-top h1 { font-size: 1.4rem; }
+  .tdy-sd { min-height: 50px; }
+  .tdy-actions { flex-wrap: wrap; }
+}

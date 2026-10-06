@@ -1,0 +1,155 @@
+/* Crevare — écran de séance (.ses-…). Uniquement les jetons de base.css. */
+
+.ses-back {
+  background: none; border: 0; font: inherit; font-size: .9rem; color: var(--muted); cursor: pointer;
+  min-height: 44px; padding: 0; text-align: left; justify-self: start;
+}
+.ses-top h1 { margin-top: 2px; }
+.ses-status { margin: 2px 0 6px; }
+.ses-status .btn.small { min-height: 44px; }
+.ses-progress { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; margin-bottom: 12px; }
+.ses-progress span { display: block; height: 100%; background: var(--ok); border-radius: inherit; transition: width .25s; }
+.ses-intro { margin: 10px 0; }
+.ses-safety, .ses-soft { margin: 10px 0; }
+.ses-safety p, .ses-soft p { margin: .2rem 0; }
+.ses-soft .btn { margin-top: 6px; min-height: 44px; }
+.ses-start { margin: 12px 0; min-height: 52px; }
+.ses-started { margin: 8px 0; }
+
+/* Piscine */
+.ses-pool-line { padding: 6px 6px 6px 12px; border-radius: var(--radius-sm); background: var(--surface-2); margin: 10px 0; }
+.ses-pool-line .btn.small { min-height: 44px; }
+.ses-pools { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.ses-pool {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; min-height: 56px; padding: 10px 14px;
+  border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font: inherit; text-align: left; cursor: pointer;
+}
+.ses-pool.is-on { border-color: var(--loc-piscine); box-shadow: inset 0 0 0 1px var(--loc-piscine); }
+.ses-pool-form .field input { width: 100%; }
+.ses-pool-form .seg-opt span, .ses-finish .seg-opt span { min-height: 44px; }
+
+/* Apnée */
+.ses-apnea { border-color: var(--warn); }
+.ses-apnea h2 { font-size: 1.05rem; margin-top: 0; }
+.ses-apnea ul { padding-left: 1.1rem; margin: .4rem 0 .8rem; }
+.ses-apnea-ok, .ses-apnea + .note { margin: 10px 0; }
+.ses-apnea-ok .link, .note .link { min-height: 44px; display: inline-flex; align-items: center; }
+
+/* Carte d'exercice */
+.ses-ex.is-complete { border-color: var(--ok); }
+.ses-ex.is-skipped { opacity: .7; }
+.ses-ex-head { display: flex; align-items: flex-start; gap: 10px; }
+.ses-ex-name { margin: 0; font-size: 1.02rem; overflow-wrap: anywhere; }
+.ses-presc { margin: 2px 0 0; color: var(--muted); }
+.ses-lengths { margin: 2px 0 0; color: var(--loc-piscine); font-weight: 650; }
+.ses-ex .note { margin: 8px 0 0; }
+.ses-badges { margin: 8px 0 0; }
+.ses-badges .pill { white-space: normal; }
+.ses-cues { margin: 4px 0 0; }
+.ses-cues summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--info); font-weight: 600; font-size: .9rem; }
+.ses-cues ul { padding-left: 1.1rem; margin: .3rem 0; }
+.ses-cues .note { margin: 6px 0; }
+.ses-cues .link { display: inline-flex; min-height: 44px; align-items: center; }
+.ses-prev { margin: 6px 0 0; }
+.ses-suggest { margin: 4px 0 0; color: var(--ok); font-weight: 650; }
+.ses-timer { margin-top: 10px; }
+
+/* Séries */
+.ses-sets { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin-top: 10px; }
+.ses-set {
+  display: flex; align-items: center; gap: 8px; padding: 6px; border-radius: 12px;
+  background: var(--surface-2); border: 1px solid transparent;
+}
+.ses-set.is-done { border-color: var(--ok); }
+.ses-set-n { width: 20px; text-align: center; font-weight: 700; color: var(--muted); font-family: var(--font-num); flex: none; }
+.ses-fields { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; flex: 1; min-width: 0; }
+.ses-f { display: inline-flex; align-items: center; gap: 4px; }
+.ses-in {
+  width: 70px; padding: 0 6px; text-align: center; background: var(--surface);
+  font-family: var(--font-num); font-variant-numeric: tabular-nums;
+}
+.ses-in.ses-in-time { width: 88px; }
+.ses-in[aria-invalid="true"] { border-color: var(--danger); }
+.ses-in::placeholder { color: var(--muted); opacity: .75; }
+.ses-unit { font-size: .82rem; color: var(--muted); }
+.ses-sw-btn, .ses-sign, .ses-sign.small { width: 44px; height: 44px; }
+.ses-unm { color: var(--warn); }
+.ses-check {
+  width: 48px; height: 48px; flex: none; border-radius: 12px; border: 2px solid var(--border);
+  background: var(--surface); color: var(--muted); font-size: 1.3rem; font-weight: 800; cursor: pointer; touch-action: manipulation;
+}
+.ses-check[aria-pressed="true"] { background: var(--ok); border-color: var(--ok); color: var(--accent-text); }
+.ses-check:active { transform: scale(.95); }
+.ses-ex-actions { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.ses-ex-actions .btn.small { min-height: 44px; }
+
+/* Remplacer un exercice */
+.ses-repl { display: grid; grid-template-columns: minmax(0, 1fr); gap: 6px; }
+.ses-repl-btn {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; min-height: 52px; padding: 8px 12px;
+  border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font: inherit; text-align: left; cursor: pointer;
+}
+
+/* Chrono intégré */
+.ses-sw { text-align: center; }
+.ses-sw-name { margin: 0; }
+.ses-sw-time {
+  font-family: var(--font-num); font-variant-numeric: tabular-nums; font-size: 3.4rem; font-weight: 700;
+  margin: 6px 0 14px; letter-spacing: -.02em; line-height: 1.1;
+}
+.ses-sw-btns { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
+.ses-sw-btns .btn { min-height: 64px; font-size: 1.1rem; }
+.ses-sw-laps { list-style: none; padding: 0; margin: 0 0 12px; max-height: 30vh; overflow-y: auto; }
+.ses-sw-laps li {
+  display: grid; grid-template-columns: 1fr auto auto; gap: 12px; padding: 6px 4px;
+  border-bottom: 1px solid var(--border); font-size: .9rem; text-align: left;
+}
+
+/* Feuille « Terminer » */
+.ses-finish .field input:not([type="radio"]):not([type="checkbox"]) { width: 100%; }
+.ses-fs { border: 0; padding: 0; margin: 14px 0; min-width: 0; }
+.ses-fs legend { font-size: .86rem; color: var(--muted); padding: 0; margin-bottom: 6px; }
+.ses-fs.ses-attn { padding: 10px; border-radius: var(--radius-sm); border: 1px dashed var(--warn); }
+.ses-fs.ses-attn legend { color: var(--warn); font-weight: 650; padding: 0 4px; }
+.ses-scale { display: grid; gap: 6px; }
+.ses-rpe { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.ses-pain { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.ses-chip { position: relative; min-width: 0; }
+.ses-chip input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.ses-chip span {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 54px; padding: 4px 2px;
+  border-radius: 10px; border: 1px solid var(--border); background: var(--surface-2); text-align: center; line-height: 1.1;
+}
+.ses-pain .ses-chip span { min-height: 44px; }
+.ses-chip b { font-family: var(--font-num); font-size: 1.05rem; }
+.ses-chip small { font-size: .64rem; color: var(--muted); margin-top: 3px; overflow-wrap: anywhere; }
+.ses-chip input:checked + span {
+  background: var(--accent); background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: var(--accent-text); border-color: transparent;
+}
+.ses-chip input:checked + span small { color: inherit; }
+.ses-chip input:focus-visible + span { outline: 3px solid var(--info); outline-offset: 2px; }
+.ses-pok input:checked + span { background: var(--ok); }
+.ses-pwarn input:checked + span { background: var(--warn); }
+.ses-pbad input:checked + span { background: var(--danger); }
+.ses-watch summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--info); font-weight: 600; }
+.ses-watch-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.ses-watch-grid .field { margin: 6px 0; }
+
+/* Séance terminée */
+.ses-done-title { font-weight: 700; color: var(--ok); margin-top: 0; }
+.ses-stats { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 8px; margin: 10px 0; }
+.ses-stats div { background: var(--surface-2); border-radius: var(--radius-sm); padding: 8px 10px; min-width: 0; }
+.ses-stats dt { font-size: .74rem; color: var(--muted); }
+.ses-stats dd { margin: 0; font-weight: 700; overflow-wrap: anywhere; }
+.ses-notes { white-space: pre-wrap; }
+.ses-sum { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; }
+.ses-sum li { display: flex; flex-direction: column; gap: 2px; padding-bottom: 8px; border-bottom: 1px solid var(--border); }
+.ses-sum li:last-child { border-bottom: 0; padding-bottom: 0; }
+.ses-sum a { color: var(--info); }
+
+@media (max-width: 360px) {
+  .ses-in { width: 60px; }
+  .ses-in.ses-in-time { width: 78px; }
+  .ses-watch-grid { grid-template-columns: 1fr 1fr; }
+}

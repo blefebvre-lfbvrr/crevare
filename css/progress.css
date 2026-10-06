@@ -1,0 +1,104 @@
+/* Crevare — écran Progrès et fiches de test (.prg-…). Uniquement les jetons de base.css. */
+
+.prg-back { min-height: 44px; display: inline-flex; align-items: center; }
+.prg-sub { margin: 18px 0 8px; font-size: .92rem; }
+
+/* Semaine */
+.prg-kpis { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 6px 0 8px; }
+@media (min-width: 480px) { .prg-kpis { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.prg-kpi { display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); min-width: 0; }
+.prg-kpi b { font-size: 1.3rem; line-height: 1.15; overflow-wrap: anywhere; }
+.prg-bars { --c: var(--accent-2); }
+.prg-bars .bar-fill { background: var(--accent-2); opacity: .4; }
+.prg-bars .bar-fill.prg-cur { opacity: 1; }
+
+.prg-kinds { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.prg-kind { display: grid; grid-template-columns: 96px minmax(0, 1fr) 64px; align-items: center; gap: 10px; min-height: 28px; }
+.prg-kind-l { font-size: .9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.prg-kind-bar { height: 10px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.prg-kind-bar span { display: block; height: 100%; min-width: 2px; border-radius: 999px; background: var(--c, var(--info)); }
+.prg-kind-v { text-align: right; }
+
+/* Sections par objectif */
+.prg-goal { margin: 10px 0; }
+.prg-goal > summary {
+  list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+  min-height: 48px; padding: 8px 2px; cursor: pointer; border-bottom: 2px solid var(--c, var(--border));
+}
+.prg-goal > summary::-webkit-details-marker { display: none; }
+.prg-goal > summary::after { content: '▾'; color: var(--muted); margin-left: auto; transition: transform .2s; }
+.prg-goal:not([open]) > summary::after { transform: rotate(-90deg); }
+.prg-goal-t { display: inline-flex; align-items: center; gap: 8px; min-width: 0; flex-wrap: wrap; }
+.prg-goal-t b { overflow-wrap: anywhere; }
+.prg-benches { margin-top: 10px; gap: 8px; }
+
+/* Carte d'un test */
+.prg-bench { display: block; margin: 0; padding: 12px 14px; color: var(--text); border-left: 4px solid var(--c, var(--border)); }
+.prg-bench:active { background: var(--surface-2); }
+.prg-b-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; }
+.prg-b-name { font-weight: 650; overflow-wrap: anywhere; }
+.prg-b-vals { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 12px; align-items: end; }
+.prg-b-best, .prg-b-last { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.prg-b-last { padding-left: 12px; border-left: 1px solid var(--border); }
+.prg-big { font-size: 1.9rem; line-height: 1.1; letter-spacing: -.01em; overflow-wrap: anywhere; }
+.prg-b-last b { font-size: 1.15rem; }
+.prg-b-ref { margin: 8px 0 0; }
+.prg-bench.is-empty { padding: 10px 14px; }
+.prg-bench.is-empty .prg-b-top { margin-bottom: 0; }
+.prg-bench.is-empty .prg-b-name { font-weight: 600; }
+.prg-bench.is-empty .prg-b-ref { margin-top: 2px; }
+.prg-trend { display: inline-flex; align-items: center; align-self: flex-start; margin-top: 4px; padding: 2px 8px; border-radius: 999px; font-size: .78rem; font-weight: 650; background: var(--surface-2); color: var(--muted); white-space: nowrap; }
+.prg-trend.is-mieux { color: var(--ok); }
+.prg-trend.is-moins-bien { color: var(--warn); }
+
+/* Tous les tests */
+.prg-links { list-style: none; margin: 0; padding: 0; }
+.prg-link { display: flex; align-items: center; justify-content: space-between; gap: 10px; min-height: 48px; border-top: 1px solid var(--border); padding: 6px 2px; }
+.prg-all h4:first-of-type { margin-top: 12px; }
+
+/* Fiche d'un test */
+.prg-sum .prg-big { font-size: 2.3rem; }
+.prg-status { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin: 10px 0 4px; }
+.prg-refs { display: grid; gap: 10px; margin: 12px 0 6px; }
+.prg-refs > div { display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 8px; }
+.prg-refs dt { color: var(--muted); font-size: .86rem; padding-top: 2px; }
+.prg-refs dd { margin: 0; display: flex; flex-direction: column; gap: 2px; align-items: flex-start; }
+.prg-refs dd b { font-size: 1.05rem; }
+.prg-proj { margin-top: 12px; }
+.prg-proj .tiny { display: block; margin-top: 4px; }
+.prg-hint { margin: -4px 0 4px; }
+
+.prg-toggle { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.prg-tg {
+  min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border); background: var(--surface-2);
+  color: var(--text); font: inherit; font-size: .9rem; font-weight: 600; cursor: pointer;
+}
+.prg-tg[aria-pressed="true"] { background: var(--accent); background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-text); border-color: transparent; }
+.prg-chart { --c: var(--info); }
+.prg-chart .spark { height: 140px; }
+.prg-axis { display: flex; justify-content: space-between; gap: 8px; margin-top: 4px; }
+.prg-axis span:nth-child(2) { text-align: center; }
+
+.prg-add-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
+.prg-add-grid .field { margin: 8px 0; }
+.prg-add input[type="date"], .prg-add .prg-in, .sheet .prg-in, .sheet input[type="date"], .sheet select { width: 100%; }
+.prg-in { min-width: 0; }
+.prg-add .seg-opt span { min-height: 44px; }
+@media (max-width: 360px) { .prg-add-grid { grid-template-columns: minmax(0, 1fr); } }
+
+.prg-hist { list-style: none; margin: 0; padding: 0; }
+.prg-h-row { border-top: 1px solid var(--border); padding: 2px 0; }
+.prg-h-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; width: 100%; min-height: 52px;
+  padding: 6px 2px; background: none; border: 0; color: var(--text); font: inherit; text-align: left; cursor: pointer;
+}
+.prg-h-main { display: flex; flex-direction: column; gap: 1px; min-width: 0; }
+.prg-h-main b { font-size: 1.05rem; }
+.prg-h-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; min-width: 0; text-align: right; max-width: 55%; }
+.prg-h-meta .tiny { overflow-wrap: anywhere; }
+.prg-h-ses { display: inline-flex; min-height: 36px; align-items: center; padding: 0 2px 4px; }
+.pill.prg-ctx-test { color: var(--info); }
+.pill.prg-ctx-officiel { color: var(--ok); }
+.pill.prg-ctx-sante { color: var(--accent); }
+.pill.prg-ctx-ancien { text-decoration: line-through; }
+.prg-proto summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }

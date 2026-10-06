@@ -1,0 +1,111 @@
+/* Crevare — réglages, sauvegarde, Apple Santé (.set-…, .hl-…) et questionnaire de départ (.onb-…).
+ * Uniquement les jetons de base.css. */
+
+/* ───────── Réglages ───────── */
+
+input.set-in { width: 100%; }
+.set-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.set-row { display: flex; align-items: center; gap: 8px; min-height: 52px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.set-row:last-child { border-bottom: 0; }
+.set-row .grow { display: flex; flex-direction: column; min-width: 0; }
+.set-row .grow b, .set-row .grow small { overflow-wrap: anywhere; }
+.set-row.is-off b { color: var(--muted); }
+
+/* Puces (matériel, zones) et jours */
+.set-chips, .onb-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.set-chip {
+  min-height: 44px; padding: 0 14px; border-radius: 999px; border: 1px solid var(--border);
+  background: var(--surface-2); color: var(--text); font: inherit; font-size: .92rem; font-weight: 600; cursor: pointer;
+  touch-action: manipulation;
+}
+.set-chip[aria-pressed="true"] { background: var(--accent); background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-text); border-color: transparent; }
+.set-chip:active { transform: scale(.98); }
+.set-days { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+.set-day {
+  min-height: 46px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text);
+  font: inherit; font-weight: 700; cursor: pointer; touch-action: manipulation;
+}
+.set-day[aria-pressed="true"] { background: var(--accent); background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: var(--accent-text); border-color: transparent; }
+
+.set-links { margin-top: 4px; }
+.set-links .menu-item { background: var(--surface-2); }
+
+/* Sauvegarde */
+.set-dl { margin: 8px 0; display: grid; gap: 6px; }
+.set-dl > div { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: .92rem; }
+.set-dl dt { color: var(--muted); }
+.set-dl dd { margin: 0; text-align: right; font-weight: 600; }
+.set-quota { display: block; font-weight: 400; }
+.set-file-btn { position: relative; overflow: hidden; }
+.set-file { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer; font-size: 16px; }
+.set-file-btn:focus-within { outline: 3px solid var(--info); outline-offset: 2px; }
+.set-summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--info); }
+.set-preview { margin-top: 12px; padding: 12px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border); }
+.set-preview p:first-child { margin-top: 0; }
+.set-preview-list { margin: 6px 0; padding-left: 18px; display: grid; gap: 4px; }
+.set-errors { margin: 6px 0 0; padding-left: 18px; display: grid; gap: 4px; }
+.set-errors code { white-space: pre-wrap; }
+.set-danger { border-color: var(--danger); border-color: color-mix(in srgb, var(--danger) 45%, var(--border)); }
+.set-remind { border-left: 4px solid var(--warn); }
+.set-remind h2 { font-size: 1.02rem; }
+
+/* Saisie d'une séance de la montre */
+.set-grid2 { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 12px; }
+.set-grid2 input, .set-grid2 select { width: 100%; }
+
+/* Guide Raccourcis (contenu de C.health.guideHTML) */
+.set-guide > summary { list-style: none; }
+.set-guide > summary::-webkit-details-marker { display: none; }
+.hl-guide h4 { margin-top: 18px; }
+.hl-ios { font-weight: 650; color: var(--text); background: var(--surface-2); border-radius: 6px; padding: 0 5px; -webkit-box-decoration-break: clone; box-decoration-break: clone; overflow-wrap: anywhere; }
+.hl-steps { margin: 6px 0; padding-left: 22px; display: grid; gap: 8px; font-size: .92rem; }
+.hl-pre {
+  margin: 6px 0; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface-2); border: 1px solid var(--border);
+  font-size: .82rem; line-height: 1.5; overflow-x: auto; white-space: pre; -webkit-overflow-scrolling: touch;
+}
+
+/* ───────── Questionnaire de départ ───────── */
+
+.onb { display: flex; flex-direction: column; min-height: calc(100vh - 140px); min-height: calc(100dvh - 140px); }
+.onb-top { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 8px; }
+.onb-top > :last-child { justify-self: end; }
+.onb-back { min-height: 44px; padding: 0 4px; border: 0; background: none; color: var(--muted); font: inherit; cursor: pointer; justify-self: start; }
+.onb-progress { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; margin: 6px 0 18px; }
+.onb-progress span { display: block; height: 100%; border-radius: 999px; background: var(--accent); background: linear-gradient(90deg, var(--accent), var(--accent-2)); transition: width .25s; }
+.onb-step { flex: 1; }
+.onb-title { font-size: 1.5rem; margin-bottom: 6px; }
+.onb-sub { font-size: 1.02rem; margin: 22px 0 6px; }
+.onb-nav { margin-top: 22px; padding-bottom: env(safe-area-inset-bottom, 0px); }
+.onb .note { margin: 12px 0; }
+input.onb-in, select.onb-in { width: 100%; }
+.onb-num { width: 100%; max-width: 120px; font-family: var(--font-num); font-variant-numeric: tabular-nums; }
+.onb-grid3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0 10px; }
+.onb-grid3 .field > span { min-height: 2.5em; display: flex; align-items: flex-end; }
+.onb-grid3 .time-in, .onb-grid3 .onb-num { width: 100%; max-width: none; }
+.onb-list { list-style: none; margin: 8px 0 12px; padding: 0; display: grid; gap: 10px; }
+.onb-inj { padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); display: grid; gap: 8px; }
+.onb-pool { display: flex; align-items: flex-end; gap: 8px; }
+.onb-pool .field { margin: 0; }
+.onb-pool .icon-btn { margin-bottom: 2px; }
+
+.onb-goal { margin: 10px 0; border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface); }
+.onb-goal.is-on { border-color: var(--accent-2); }
+.onb-goal-head { padding: 8px 12px; min-height: 52px; cursor: pointer; }
+.onb-goal-head input { flex: none; }
+.onb-goal-body { padding: 0 12px 8px; border-top: 1px solid var(--border); }
+
+.onb-recap { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.onb-recap-row { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-sm); background: var(--surface); border: 1px solid var(--border); }
+.onb-recap-row .grow { display: flex; flex-direction: column; gap: 2px; }
+.onb-recap-row b { font-weight: 600; overflow-wrap: anywhere; }
+.onb-steps { margin: 6px 0; padding-left: 20px; display: grid; gap: 4px; }
+
+@media (max-width: 360px) {
+  .onb-grid3 { grid-template-columns: minmax(0, 1fr); }
+  .set-grid2 { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Cibles tactiles ≥ 44 px dans les écrans du module */
+.set-page .btn.small, .onb .btn.small, .set-remind .btn.small { min-height: 44px; }
+.set-page .icon-btn, .set-page .icon-btn.small, .onb .icon-btn { width: 44px; height: 44px; }
+.set-page .seg-opt span, .onb .seg-opt span { min-height: 44px; }

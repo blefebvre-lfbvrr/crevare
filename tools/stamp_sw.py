@@ -17,11 +17,16 @@ files += ['icons/icon.svg', 'icons/icon-180.png', 'icons/icon-192.png', 'icons/i
 
 h = hashlib.sha256()
 for f in files:
-    if f == './':
+    if f in ('./', 'js/version.js'):
         continue
     h.update(f.encode())
     h.update((root / f).read_bytes())
 version = h.hexdigest()[:12]
+
+# Version lisible par l'app (« À propos ») — fichier exclu de l'empreinte.
+(root / 'js' / 'version.js').write_text(
+    "/* Généré par tools/stamp_sw.py */\n(window.Crevare = window.Crevare || {}).version = " + json.dumps(version) + ";\n",
+    encoding='utf-8')
 
 tpl = (root / 'tools' / 'sw.template.js').read_text(encoding='utf-8')
 out = tpl.replace("'__VERSION__'", json.dumps(version)).replace('__ASSETS__', json.dumps(files, indent=2))

@@ -1,0 +1,101 @@
+/* Crevare — objectifs (.gol-…) et widget « Échéances ». Uniquement les jetons de base.css. */
+
+.gol-phase { margin: 0 0 12px; }
+.gol-list { margin-top: 4px; }
+.gol-list > li > .card { margin: 0; }
+
+/* Carte d'objectif (liste) */
+.gol-card { display: grid; gap: 8px; color: var(--text); border-left: 4px solid var(--c, var(--border)); }
+.gol-card:active { background: var(--surface-2); }
+.gol-card-top { display: flex; align-items: center; gap: 12px; }
+.gol-icon { font-size: 1.6rem; width: 36px; text-align: center; flex: none; }
+.gol-card-name { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.gol-card-name b { overflow-wrap: anywhere; }
+.gol-days { display: flex; flex-direction: column; align-items: flex-end; line-height: 1; flex: none; }
+.gol-days b { font-size: 1.6rem; color: var(--c, var(--text)); }
+.gol-days small { font-size: .7rem; color: var(--muted); margin-top: 2px; }
+.gol-bar { height: 6px; border-radius: 999px; background: var(--surface-2); overflow: hidden; }
+.gol-bar span { display: block; height: 100%; min-width: 2px; border-radius: 999px; background: var(--c, var(--accent-2)); }
+.gol-card-next { margin: 0; overflow-wrap: anywhere; }
+.gol-desc { margin: 0 0 4px; }
+
+.gol-others > summary, .gol-done > summary, .gol-cl > summary {
+  min-height: 44px; display: flex; align-items: center; gap: 8px; cursor: pointer; list-style: none;
+}
+.gol-others > summary::-webkit-details-marker, .gol-done > summary::-webkit-details-marker, .gol-cl > summary::-webkit-details-marker { display: none; }
+.gol-others > summary::after, .gol-done > summary::after, .gol-cl > summary::after { content: '▾'; margin-left: auto; color: var(--muted); transition: transform .2s; }
+.gol-others:not([open]) > summary::after, .gol-done:not([open]) > summary::after, .gol-cl:not([open]) > summary::after { transform: rotate(-90deg); }
+.gol-mini { display: flex; align-items: center; gap: 10px; min-height: 48px; padding: 6px 4px; color: var(--text); }
+.gol-mini .grow { display: flex; flex-direction: column; }
+
+/* Détail */
+.gol-grid2, .gol-grid3 { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 12px; }
+@media (min-width: 420px) { .gol-grid2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 520px) { .gol-grid3 { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+input.gol-in, select.gol-in, textarea.gol-in { width: 100%; }
+.gol-target .time-in { width: 110px; }
+.gol-seg .seg-opt span { min-height: 44px; }
+
+.gol-bench {
+  display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: var(--radius-sm);
+  background: var(--surface-2); color: var(--text); min-height: 48px;
+}
+.gol-bench .grow { display: flex; flex-direction: column; }
+.gol-bench small { overflow-wrap: anywhere; }
+
+.gol-std { background: var(--surface-2); border-radius: var(--radius-sm); padding: 10px 12px; }
+.gol-stations { margin: 8px 0; padding-left: 22px; display: grid; gap: 6px; }
+.gol-stations li { padding-left: 2px; }
+.gol-st { display: flex; align-items: flex-start; gap: 8px; }
+.gol-st .grow { min-width: 0; }
+.gol-st-note { display: block; }
+.gol-st-load { flex: none; white-space: nowrap; }
+.gol-notes { margin: 6px 0 0; padding-left: 18px; color: var(--warn); }
+
+/* Jalons */
+.gol-ms-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.gol-ms { display: flex; align-items: flex-start; gap: 6px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.gol-ms:last-child { border-bottom: 0; }
+.gol-ms-check { display: grid; place-items: center; min-width: 44px; min-height: 44px; cursor: pointer; flex: none; }
+.gol-ms-body { flex: 1; min-width: 0; display: flex; flex-direction: column; padding-top: 10px; }
+.gol-ms-body b { overflow-wrap: anywhere; font-weight: 600; }
+.gol-ms-note { margin: 4px 0 0; }
+.gol-ms-more > summary { min-height: 32px; display: inline-flex; align-items: center; color: var(--info); font-size: .84rem; cursor: pointer; }
+.gol-ms.is-done .gol-ms-body b { text-decoration: line-through; color: var(--muted); }
+.gol-ms.is-late { border-left: 3px solid var(--warn); padding-left: 4px; }
+.gol-ms .icon-btn { margin-top: 4px; }
+.gol-done { margin-top: 6px; }
+
+/* Check-lists */
+.gol-cl-list { list-style: none; margin: 0; padding: 0; }
+.gol-cl-list .check-row { align-items: flex-start; padding: 8px 0; }
+.gol-cl-list .check-row input { margin-top: 2px; flex: none; }
+
+/* Nouvel objectif */
+.gol-tpl {
+  display: flex; align-items: center; gap: 12px; width: 100%; text-align: left; padding: 12px; min-height: 56px;
+  border-radius: var(--radius); border: 1px solid var(--border); background: var(--surface-2); color: var(--text); font: inherit; cursor: pointer;
+}
+.gol-tpl .grow { display: flex; flex-direction: column; gap: 2px; }
+.gol-tpl:active { background: var(--surface-3); }
+
+/* Widget « Échéances » (Aujourd'hui) */
+.gol-cd-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.gol-cd-row {
+  display: flex; align-items: center; gap: 10px; min-height: 52px; padding: 6px 8px 6px 0; color: var(--text);
+  border-left: 3px solid var(--c, var(--border)); padding-left: 10px; border-radius: 4px;
+}
+.gol-cd-row:active { background: var(--surface-2); }
+.gol-cd-days {
+  flex: none; min-width: 64px; text-align: center; font-weight: 700; font-size: .86rem; padding: 4px 6px; border-radius: 8px;
+  background: var(--surface-2); color: var(--text);
+}
+.gol-cd-days.is-soon { color: var(--warn); }
+.gol-cd-days.is-late { color: var(--danger); }
+.gol-cd-text { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.gol-cd-text b { font-weight: 600; overflow-wrap: anywhere; }
+
+/* Cibles tactiles ≥ 44 px dans les écrans du module */
+.gol-page .btn.small { min-height: 44px; }
+.gol-page .icon-btn, .gol-page .icon-btn.small { width: 44px; height: 44px; }
+.gol-page .seg-opt span { min-height: 44px; }

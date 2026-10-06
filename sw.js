@@ -1,6 +1,53 @@
 // Crevare — cache hors ligne. Liste et version générées par tools/stamp_sw.py (ne pas modifier à la main).
-const VERSION = '__VERSION__';
-const ASSETS = __ASSETS__;
+const VERSION = "795a3aeeb1fc";
+const ASSETS = [
+  "./",
+  "index.html",
+  "manifest.webmanifest",
+  "css/base.css",
+  "css/today.css",
+  "css/plan.css",
+  "css/session.css",
+  "css/library.css",
+  "css/timer.css",
+  "css/progress.css",
+  "css/habits.css",
+  "css/goals.css",
+  "css/settings.css",
+  "css/agenda.css",
+  "js/version.js",
+  "js/core/util.js",
+  "js/core/legacy-v1.js",
+  "js/core/schema.js",
+  "js/core/store.js",
+  "js/ui/components.js",
+  "js/data/exercises.js",
+  "js/data/benchmarks.js",
+  "js/data/goals.js",
+  "js/data/sessions.js",
+  "js/core/planner.js",
+  "js/core/sessions.js",
+  "js/core/metrics.js",
+  "js/core/agenda.js",
+  "js/platform/audio.js",
+  "js/platform/health.js",
+  "js/ui/timer.js",
+  "js/ui/today.js",
+  "js/ui/plan.js",
+  "js/ui/session.js",
+  "js/ui/library.js",
+  "js/ui/progress.js",
+  "js/ui/habits.js",
+  "js/ui/goals.js",
+  "js/ui/onboarding.js",
+  "js/ui/settings.js",
+  "js/ui/agenda.js",
+  "js/app.js",
+  "icons/icon.svg",
+  "icons/icon-180.png",
+  "icons/icon-192.png",
+  "icons/icon-512.png"
+];
 const CACHE = 'crevare-' + VERSION;
 
 self.addEventListener('install', (e) => {
