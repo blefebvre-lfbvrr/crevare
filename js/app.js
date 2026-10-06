@@ -508,7 +508,8 @@ function viewSettings() {
       <p class="muted small">Tout est stocké sur ce téléphone uniquement. Exporte régulièrement une sauvegarde.</p>
       <div class="row gap wrap">
         <button class="btn small" data-action="export">Exporter (JSON)</button>
-        <label class="btn ghost small file">Importer<input type="file" accept="application/json" data-action="import" hidden></label>
+        <button class="btn ghost small" data-action="restore">Restaurer</button>
+        <label class="btn ghost small file">Importer un fichier<input type="file" accept="application/json" data-action="import" hidden></label>
         <button class="btn ghost small danger" data-action="reset-all">Tout effacer</button>
       </div>
     </section>
@@ -526,7 +527,7 @@ const TABS = [
 ];
 
 function render() {
-  const h = location.hash || '#/';
+  const h = route;
   let html;
   const m = h.match(/^#\/s\/(\d{4}-\d{2}-\d{2})$/);
   if (m) html = viewSession(m[1]);
@@ -548,7 +549,18 @@ function rerender() {
   window.scrollTo(0, y);
 }
 
-window.addEventListener('hashchange', () => { render(); window.scrollTo(0, 0); });
+let route = /^#\/.*/.test(location.hash) ? location.hash : '#/';
+function navigate(to) {
+  route = to;
+  try { history.replaceState(null, '', to); } catch (e) { /* URL non modifiable : la navigation reste en mémoire */ }
+  render(); window.scrollTo(0, 0);
+}
+document.addEventListener('click', (e) => {
+  const a = e.target.closest('a[href^="#/"]');
+  if (!a) return;
+  e.preventDefault();
+  navigate(a.getAttribute('href'));
+}, true);
 
 /* ════════════════════ Modales & toasts ════════════════════ */
 
@@ -558,6 +570,12 @@ function openModal(html) {
 }
 function closeModal() { $modal.classList.remove('open'); $modal.innerHTML = ''; }
 $modal.addEventListener('click', (e) => { if (e.target === $modal || e.target.closest('[data-close]')) closeModal(); });
+
+function ask(msg, yesLabel, onYes) {
+  openModal(`<p>${esc(msg)}</p><div class="row gap wrap">
+    <button class="btn" data-ask="yes">${esc(yesLabel)}</button><button class="btn ghost" data-close>Annuler</button></div>`);
+  $modal.querySelector('[data-ask="yes"]').addEventListener('click', () => { closeModal(); onYes(); });
+}
 
 let toastTimer;
 function toast(msg) {
@@ -618,9 +636,10 @@ const actions = {
   },
   'del-habit'(el) {
     const h = state.habits.find((x) => x.id === el.dataset.id);
-    if (!confirm(`Supprimer « ${h.name} » ?`)) return;
-    state.habits = state.habits.filter((x) => x.id !== h.id);
-    save(); rerender();
+    ask(`Supprimer l'habitude « ${h.name} » ?`, 'Supprimer', () => {
+      state.habits = state.habits.filter((x) => x.id !== h.id);
+      save(); rerender();
+    });
   },
   week(el) { const d = +el.dataset.d; weekOffset = d === 0 ? 0 : weekOffset + d; rerender(); },
   'change-session'(el) {
@@ -640,11 +659,14 @@ const actions = {
   },
   'pick-session'(el) {
     const { key, id } = el.dataset;
+    const apply = () => {
+      if (id) state.overrides[key] = id; else delete state.overrides[key];
+      delete state.workouts[key];
+      save(); closeModal(); rerender();
+    };
     const w = state.workouts[key];
-    if (w && (w.done || Object.keys(w.log || {}).length) && !confirm('Une séance est déjà enregistrée pour ce jour. La remplacer ?')) return;
-    if (id) state.overrides[key] = id; else delete state.overrides[key];
-    delete state.workouts[key];
-    save(); closeModal(); rerender();
+    if (w && (w.done || Object.keys(w.log || {}).length)) ask('Une séance est déjà enregistrée pour ce jour. La remplacer ?', 'Remplacer', apply);
+    else apply();
   },
   'set-done'(el) {
     const { key, ex, i } = el.dataset;
@@ -708,18 +730,41 @@ const actions = {
     save(); rerender(); toast('Planning rétabli');
   },
   export() {
-    const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    openModal(`<div class="row between"><h3>Sauvegarde</h3><button class="icon-btn" data-close>✕</button></div>
+      <p class="muted small">Copie ce texte dans une note ou un mail. Pour restaurer : colle-le dans « Restaurer » ou importe le fichier.</p>
+      <textarea id="export-json" rows="8" readonly>${esc(JSON.stringify(state))}</textarea>
+      <div class="row gap wrap"><button class="btn small" data-action="copy-export">Copier</button>
+        <button class="btn ghost small" data-action="download-export">Télécharger le fichier</button></div>`);
+  },
+  'copy-export'() {
+    const ta = document.getElementById('export-json');
+    navigator.clipboard?.writeText(ta.value).then(() => toast('✓ Copié'), () => { ta.select(); toast('Sélectionné : copie-le manuellement'); })
+      ?? (ta.select(), toast('Sélectionné : copie-le manuellement'));
+  },
+  'download-export'() {
     const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' }));
     a.download = `crevare-${todayKey()}.json`;
     a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   },
+  restore() {
+    openModal(`<div class="row between"><h3>Restaurer</h3><button class="icon-btn" data-close>✕</button></div>
+      <form data-form="restore"><label class="field"><span>Colle ta sauvegarde</span><textarea id="restore-json" name="json" rows="8" required></textarea></label>
+      <button class="btn">Restaurer</button></form>`);
+  },
   'reset-all'() {
-    if (!confirm('Effacer toutes tes données (séances, habitudes, tests) ? Exporte une sauvegarde avant.')) return;
-    state = defaultState(); save(); location.hash = '#/'; render();
+    ask('Effacer toutes tes données (séances, habitudes, tests) ? Exporte une sauvegarde avant.', 'Tout effacer', () => {
+      state = defaultState(); save(); navigate('#/');
+    });
   },
 };
+
+function importJson(txt) {
+  const data = JSON.parse(txt);
+  if (!data || data.version !== 1 || !data.goals) throw new Error('format');
+  state = { ...defaultState(), ...data }; save(); render(); toast('✓ Données importées');
+}
 
 const changeActions = {
   'set-input'(el) {
@@ -743,11 +788,7 @@ const changeActions = {
   import(el) {
     const file = el.files[0];
     if (!file) return;
-    file.text().then((txt) => {
-      const data = JSON.parse(txt);
-      if (!data || data.version !== 1 || !data.goals) throw new Error('format');
-      state = { ...defaultState(), ...data }; save(); render(); toast('✓ Données importées');
-    }).catch(() => toast('⚠️ Fichier invalide'));
+    file.text().then(importJson).catch(() => toast('⚠️ Fichier invalide'));
   },
 };
 
@@ -769,6 +810,8 @@ document.addEventListener('submit', (e) => {
   if (form.dataset.form === 'add-habit') {
     state.habits.push({ id: uid(), name: fd.get('name').trim(), icon: fd.get('icon').trim() || '✨' });
     save(); rerender();
+  } else if (form.dataset.form === 'restore') {
+    try { importJson(fd.get('json')); closeModal(); } catch (err) { toast('⚠️ Sauvegarde invalide'); }
   } else if (form.dataset.form === 'finish') {
     finishWorkout(form.dataset.key, +fd.get('rpe'), fd.get('notes').trim());
     closeModal(); toast('✓ Séance enregistrée'); rerender();
@@ -788,7 +831,7 @@ document.addEventListener('submit', (e) => {
 /* ════════════════════ Démarrage ════════════════════ */
 
 render();
-if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+if ('serviceWorker' in navigator && /^https?:$/.test(location.protocol)) {
   navigator.serviceWorker.register('sw.js').catch(() => {});
 }
 // Rafraîchit la vue au retour sur l'app (changement de jour).
