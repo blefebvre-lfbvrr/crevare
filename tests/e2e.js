@@ -43,7 +43,7 @@ async function onboard(p) {
   await p.click('[data-action="onb.fin"]');
 }
 
-(async () => {
+async function main() {
   const b = await chromium.launch();
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, colorScheme: process.env.SCHEME || 'dark', serviceWorkers: 'block' });
   const p = await ctx.newPage();
@@ -78,4 +78,7 @@ async function onboard(p) {
   if (errors.length) console.log('ERREURS :\n- ' + [...new Set(errors)].join('\n- '));
   await b.close();
   process.exit(problems.length || errors.length ? 1 : 0);
-})();
+}
+
+module.exports = { onboard, ROUTES };
+if (require.main === module) main();
